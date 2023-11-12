@@ -2,4 +2,4 @@ network/image_data
 .idea/
 network/.neptune
 __pycache__/
-
+network/models_save

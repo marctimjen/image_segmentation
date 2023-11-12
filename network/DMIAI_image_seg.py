@@ -23,7 +23,7 @@ from torchmetrics.classification import BinaryJaccardIndex
 
 # Define a custom dataset class
 # Training params
-BATCH_SIZE = 4
+BATCH_SIZE = 8
 EPOCHS = 10
 LEARNING_RATE = 0.001
 
