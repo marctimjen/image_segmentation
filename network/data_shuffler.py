@@ -5,7 +5,7 @@ import os
 import numpy as np
 import shutil
 
-data_path = rf"/home/hp/Documents/GitHub/image_segmentation/data/all_data"
+data_path = rf"/datasets/tumor_segmentation_pics_from_repo"
 
 split = 0.2  # how many pct. for val.
 
