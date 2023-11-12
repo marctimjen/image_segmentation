@@ -1,2 +1,5 @@
 network/image_data
 .idea/
+network/.neptune
+__pycache__/
+

@@ -207,7 +207,7 @@ for epoch in range(EPOCHS):
     dice_score = torch.tensor(0.0)
 
     with torch.no_grad():
-        for val_images, val_masks in val_loader: # tqdm(val_loader, desc=f'Validation', leave=False):
+        for val_images, val_masks in val_loader:  # tqdm(val_loader, desc=f'Validation', leave=False):
             val_images, val_masks = val_images.to(device), val_masks.to(device)
 
             model_outputs = model(val_images)
@@ -215,7 +215,7 @@ for epoch in range(EPOCHS):
             val_loss += criterion(model_outputs, val_masks).cpu()
 
             val_masks_int = torch.tensor(val_masks, dtype=torch.int8)
-            dice_score += calc_dice_score(model_outputs, val_masks_int).cpu()
+            dice_score += calc_dice_score(F.sigmoid(model_outputs), val_masks_int, ignore_index=0).cpu()
 
             iou += calc_iou(model_outputs, val_masks_int).cpu()
 

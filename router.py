@@ -5,12 +5,15 @@ from models.dtos import PredictRequestDto, PredictResponseDto
 from utils import validate_segmentation, encode_request, decode_request
 import segmentation_models_pytorch as smp
 import torch
+from torchvision import transforms
+import torch.nn.functional as F
 
+trans = transforms.Compose([transforms.ToTensor()])
 
 # Model params
 ENCODER_NAME = "resnet34"
 
-PATH = "CV-20/MODEL-Unetresnet34CV-20EPOCH8.pth"
+PATH = "network/models_save/CV-20/MODEL-Unetresnet34CV-20EPOCH8.pth"
 
 # Create the model
 model = smp.Unet(
@@ -47,13 +50,41 @@ def predict_endpoint(request: PredictRequestDto):
 
 ### CALL YOUR CUSTOM MODEL VIA THIS FUNCTION ###
 def predict(img: np.ndarray) -> np.ndarray:
-    logger.info(f'Recieved image: {img.shape}')
-    threshold = 50
-    segmentation = get_threshold_segmentation(img, threshold)
+    # logger.info(f'Recieved image: {img.shape}')
+    # threshold = 50
+    # segmentation = get_threshold_segmentation(img, threshold)
+    # return segmentation
+
+    segmentation = unet_prediction(img)
     return segmentation
 
-def unet_prediction() -> np.ndarray:
-    pass
+def unet_prediction(img: np.ndarray, threshold: float = 0.5) -> np.ndarray:
+    inp = torch.tensor(255 * trans(img), dtype=torch.float32)
+
+    pad_height = max(992 - inp.shape[1], 0)
+    pad_width = max(416 - inp.shape[2], 0)
+    pad_top = pad_height // 2
+    pad_bottom = pad_height - pad_top
+    pad_left = pad_width // 2
+    pad_right = pad_width - pad_left
+    padded_image = transforms.functional.pad(inp, (pad_left, pad_bottom, pad_right, pad_top), fill=255)
+
+    out = model(padded_image.unsqueeze(0))[0]  # get the feature map
+
+    # TODO: Test this unpadding
+
+    original_height = padded_image.shape[-2] - pad_top - pad_bottom
+    original_width = padded_image.shape[-1] - pad_left - pad_right
+
+    # Use slicing to unpad the image
+    out = out[:, pad_top:pad_top + original_height, pad_left:pad_left + original_width]
+    out = F.sigmoid(out)
+    out = (out >= threshold).numpy().astype(np.uint8)*255
+
+    segment_map = np.tile(out, (3, 1, 1))
+    segment_map = np.transpose(segment_map, (1, 2, 0))
+    return segment_map
+
 
 ### DUMMY MODEL ###
 def get_threshold_segmentation(img:np.ndarray, threshold:int) -> np.ndarray:
