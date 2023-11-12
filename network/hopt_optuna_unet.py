@@ -57,7 +57,7 @@ def objective(trial):
         )
 
     # Training params
-    BATCH_SIZE = trial.suggest_int('BATCH_SIZE', 2, 16)
+    BATCH_SIZE = trial.suggest_int('BATCH_SIZE', 2, 14)
     optimizer_name = trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"])
     LEARNING_RATE = trial.suggest_float("lr", 1e-5, 1e-1, log=True)
     optimizer = getattr(optim, optimizer_name)(model.parameters(), lr=LEARNING_RATE)
