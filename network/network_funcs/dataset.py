@@ -3,10 +3,10 @@ import os
 from torchvision import transforms
 from PIL import Image
 import torch
-
+import cv2
 
 class SegmentationDataset(Dataset):
-    def __init__(self, root_dir, transform = None, target_size = (992, 416)):
+    def __init__(self, root_dir, transform=None, target_size=(992, 416)):
         self.root_dir = root_dir
         self.transform = transform
         self.target_size = target_size
@@ -19,9 +19,6 @@ class SegmentationDataset(Dataset):
 
         assert len(self.images) == len(self.masks), "Number of images and masks should be the same."
 
-        self.imageConverter = transforms.Compose([transforms.PILToTensor()])
-        self.maskConverter = transforms.Compose([transforms.ToTensor()])
-
     def __len__(self):
         return len(self.images)
 
@@ -33,12 +30,21 @@ class SegmentationDataset(Dataset):
             mask_path = os.path.join(self.mask_folder, "target_seg_" + self.images[idx][-7:])
 
         # Load images
-        image = Image.open(img_path).convert('RGB')
-        mask = Image.open(mask_path).convert('RGB')
+        image = cv2.imread(img_path)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        mask = cv2.imread(mask_path)
+
+        if self.transform:
+            transformed = self.transform(image=image, mask=mask)
+            image = transformed['image']
+            mask = transformed['mask']
 
         # Convert to tensors
-        tensor_image = self.imageConverter(image)
-        tensor_mask = self.maskConverter(mask)
+        tensor_image = torch.from_numpy(image)
+        tensor_image = tensor_image.permute(2, 0, 1)
+
+        tensor_mask = torch.from_numpy(mask)
+        tensor_mask = tensor_mask.permute(2, 0, 1) / 255
         tensor_mask = tensor_mask[2:, :, :]
 
         # add padding
@@ -52,9 +58,5 @@ class SegmentationDataset(Dataset):
 
         padded_image = transforms.functional.pad(tensor_image, (pad_left, pad_bottom, pad_right, pad_top), fill=255)
         padded_mask = transforms.functional.pad(tensor_mask, (pad_left, pad_bottom, pad_right, pad_top), fill=0)
-
-        if self.transform:
-            padded_image = self.transform(padded_image)
-            padded_mask = self.transform(padded_mask)
 
         return torch.tensor(padded_image, dtype=torch.float32), torch.tensor(padded_mask, dtype=torch.float32)
