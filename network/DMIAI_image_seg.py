@@ -74,7 +74,7 @@ class DiceBCELoss(nn.Module):
     def forward(self, inputs, targets, smooth=1):
 
         #comment out if your model contains a sigmoid or equivalent activation layer
-        inputs = F.sigmoid(inputs)
+        inputs = torch.sigmoid(inputs)
 
         #flatten label and prediction tensors
         inputs = inputs.view(-1)
@@ -215,7 +215,7 @@ for epoch in range(EPOCHS):
             val_loss += criterion(model_outputs, val_masks).cpu()
 
             val_masks_int = torch.tensor(val_masks, dtype=torch.int8)
-            dice_score += calc_dice_score(F.sigmoid(model_outputs), val_masks_int, ignore_index=0).cpu()
+            dice_score += calc_dice_score(torch.sigmoid(model_outputs), val_masks_int, ignore_index=0).cpu()
 
             iou += calc_iou(model_outputs, val_masks_int).cpu()
 
