@@ -142,7 +142,7 @@ def objective(trial):
                 val_loss += criterion(model_outputs, val_masks).cpu()
 
                 val_masks_int = torch.tensor(val_masks, dtype=torch.int8)
-                dice_score += calc_dice_score(F.sigmoid(model_outputs), val_masks_int, ignore_index=0).cpu()
+                dice_score += calc_dice_score(torch.sigmoid(model_outputs), val_masks_int, ignore_index=0).cpu()
 
                 iou += calc_iou(model_outputs, val_masks_int).cpu()
 

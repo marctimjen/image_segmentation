@@ -1,6 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
-
+import torch
 class DiceBCELoss(nn.Module):
     def __init__(self, weight=None, size_average=True):
         super(DiceBCELoss, self).__init__()
@@ -8,7 +8,7 @@ class DiceBCELoss(nn.Module):
     def forward(self, inputs, targets, smooth=1):
 
         #comment out if your model contains a sigmoid or equivalent activation layer
-        inputs = F.sigmoid(inputs)
+        inputs = torch.sigmoid(inputs)
 
         #flatten label and prediction tensors
         inputs = inputs.view(-1)
