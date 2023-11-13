@@ -172,7 +172,7 @@ def objective(trial):
 
 
 study = optuna.create_study(direction="minimize")
-# study.optimize(objective, n_trials=40, callbacks=[neptune_callback], timeout=25*60)
-study.optimize(objective, n_trials=2, callbacks=[neptune_callback], timeout=25*60)
+study.optimize(objective, n_trials=40, callbacks=[neptune_callback])
+# study.optimize(objective, n_trials=2, callbacks=[neptune_callback], timeout=25*60)
 
 run.stop()
