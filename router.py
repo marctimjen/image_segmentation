@@ -13,7 +13,7 @@ trans = transforms.Compose([transforms.ToTensor()])
 # Model params
 ENCODER_NAME = "resnet34"
 
-PATH = "network/models_save/CV-127/MODEL-Unetresnet34CV-127_EPOCH_97.pth"
+PATH = "network/models_save/CV-125/MODEL-Unetresnet34CV-125_EPOCH_68.pth"
 
 # Create the model
 model = smp.Unet(
