@@ -60,12 +60,12 @@ def objective(trial):
         )
 
     # Training params
-    BATCH_SIZE = trial.suggest_int('BATCH_SIZE', 2, 14)
+    BATCH_SIZE = trial.suggest_int('BATCH_SIZE', 8, 14)
     optimizer_name = trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"])
-    LEARNING_RATE = trial.suggest_float("lr", 1e-5, 1e-1, log=True)
+    LEARNING_RATE = trial.suggest_float("lr", 1e-6, 1e-2, log=True)
     optimizer = getattr(optim, optimizer_name)(model.parameters(), lr=LEARNING_RATE)
 
-    EPOCHS = 100
+    EPOCHS = 120
 
     # Proper directories
     TRAIN_DATA_DIR = 'image_data/train'
@@ -93,12 +93,12 @@ def objective(trial):
     model = model.to(device)
 
     # Set up dataset and dataloader
-    transform = A.Compose([A.RandomGamma(p=0.2),
-                           A.Resize(width=np.random.randint(200, 416), height=np.random.randint(200, 992), p=0.2),
-                           A.Sharpen(p=0.2),
-                           A.GaussNoise(p=0.2)])
+    # transform = A.Compose([A.RandomGamma(p=0.2),
+    #                        A.Resize(width=np.random.randint(200, 416), height=np.random.randint(200, 992), p=0.2),
+    #                        A.Sharpen(p=0.2),
+    #                        A.GaussNoise(p=0.2)])
 
-    trainDataset = SegmentationDataset(root_dir=TRAIN_DATA_DIR, transform=transform)
+    trainDataset = SegmentationDataset(root_dir=TRAIN_DATA_DIR)  # , transform=transform)
     valDataset = SegmentationDataset(root_dir=VAL_DATA_DIR)
 
     train_loader = DataLoader(trainDataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=4)
@@ -114,7 +114,7 @@ def objective(trial):
         model.train()
 
         # Use tqdm to add a progress bar
-        for images, masks in train_loader: #tqdm(train_loader, desc=f'Epoch {epoch + 1}/{EPOCHS}', leave=False):
+        for images, masks in train_loader:  # tqdm(train_loader, desc=f'Epoch {epoch + 1}/{EPOCHS}', leave=False):
             images, masks = images.to(device), masks.to(device)
 
             # Forward pass
@@ -177,7 +177,7 @@ def objective(trial):
 
 
 study = optuna.create_study(direction="minimize")
-study.optimize(objective, n_trials=40, callbacks=[neptune_callback])
+study.optimize(objective, n_trials=100, callbacks=[neptune_callback])
 # study.optimize(objective, n_trials=2, callbacks=[neptune_callback], timeout=25*60)
 
 run.stop()

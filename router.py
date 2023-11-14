@@ -13,20 +13,21 @@ trans = transforms.Compose([transforms.ToTensor()])
 # Model params
 ENCODER_NAME = "resnet34"
 
-PATH = "network/models_save/CV-130/MODEL-UnetPlusPlusresnet34CV-131_EPOCH_38.pth"
+PATH = "network/models_save/CV-152/MODEL-Unetresnet34CV-152_EPOCH_105.pth"
 
 # Create the model
-# model = smp.Unet(
+model = smp.Unet(
+    encoder_name=ENCODER_NAME,           # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
+    in_channels=3,                        # model input channels (1 for gray-scale images, 3 for RGB, etc.)
+    classes=1,                            # model output channels (number of classes in your dataset)
+)
+
+# model = smp.UnetPlusPlus(
 #     encoder_name=ENCODER_NAME,           # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
 #     in_channels=3,                        # model input channels (1 for gray-scale images, 3 for RGB, etc.)
 #     classes=1,                            # model output channels (number of classes in your dataset)
 # )
 
-model = smp.UnetPlusPlus(
-    encoder_name=ENCODER_NAME,           # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
-    in_channels=3,                        # model input channels (1 for gray-scale images, 3 for RGB, etc.)
-    classes=1,                            # model output channels (number of classes in your dataset)
-)
 model.load_state_dict(torch.load(PATH))
 model.eval()
 
