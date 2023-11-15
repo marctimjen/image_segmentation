@@ -12,6 +12,7 @@ def identify_axis(shape):
     # Exception - Unknown
     else : raise ValueError('Metric: Shape of tensor is neither 2D or 3D.')
 
+
 class AsymmetricFocalLoss(nn.Module):
     """For Imbalanced datasets
     Parameters
@@ -86,6 +87,7 @@ class AsymmetricFocalTverskyLoss(nn.Module):
         # Average class scores
         loss = torch.mean(torch.stack([back_dice,fore_dice], axis=-1))
         return loss
+
 
 class AsymmetricUnifiedFocalLoss(nn.Module):
     """The Unified Focal loss is a new compound loss function that unifies Dice-based and cross entropy-based loss functions into a single framework.

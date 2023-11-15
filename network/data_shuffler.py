@@ -7,7 +7,7 @@ import shutil
 
 data_path = rf"/datasets/tumor_segmentation_pics_from_repo"
 
-split = 0.2  # how many pct. for val.
+split = 0.13  # how many pct. for val.
 
 np.random.seed(42)
 print("Remember to change seed if necessary")

@@ -5,6 +5,7 @@ from PIL import Image
 import torch
 import cv2
 
+
 class SegmentationDataset(Dataset):
     def __init__(self, root_dir, transform=None, target_size=(992, 416)):
         self.root_dir = root_dir

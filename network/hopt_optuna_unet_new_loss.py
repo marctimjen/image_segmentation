@@ -59,12 +59,12 @@ def objective(trial):
         )
 
     # Training params
-    BATCH_SIZE = trial.suggest_int('BATCH_SIZE', 8, 14)
+    BATCH_SIZE = trial.suggest_int('BATCH_SIZE', 8, 12)
     optimizer_name = trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"])
-    LEARNING_RATE = trial.suggest_float("lr", 1e-6, 1e-2, log=True)
+    LEARNING_RATE = trial.suggest_float("lr", 1e-6, 5e-4, log=True)
     optimizer = getattr(optim, optimizer_name)(model.parameters(), lr=LEARNING_RATE)
 
-    EPOCHS = 120
+    EPOCHS = 60
 
     # Proper directories
     TRAIN_DATA_DIR = 'image_data/train'
@@ -176,7 +176,7 @@ def objective(trial):
 
 
 study = optuna.create_study(direction="minimize")
-study.optimize(objective, n_trials=100, callbacks=[neptune_callback])
+study.optimize(objective, n_trials=500, callbacks=[neptune_callback])
 # study.optimize(objective, n_trials=2, callbacks=[neptune_callback], timeout=25*60)
 
 run.stop()
