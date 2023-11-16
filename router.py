@@ -17,9 +17,9 @@ ENCODER_NAME = "efficientnet-b3"
 # PATH = "network/models_save/CV-176/MODEL-Unetresnet34CV-176_EPOCH_83.pth"
 # PATH = "network/models_save/CV-177/MODEL-Unetresnet34CV-177_EPOCH_48.pth"
 # PATH = "network/models_save/CV-179/MODEL-Unetresnet34CV-179_EPOCH_34.pth"
-PATH = "network/models_save/CV-199/MODEL-Unetefficientnet-b3CV-199_EPOCH_98.pth"
+# PATH = "network/models_save/CV-199/MODEL-Unetefficientnet-b3CV-199_EPOCH_98.pth"
 
-# PATH = "network/models_save/CV-202/MODEL-Unetresnet34CV-202_EPOCH_43.pth"
+PATH = "network/models_save/CV-202/MODEL-Unetresnet34CV-202_EPOCH_43.pth"
 
 # Create the model
 model = smp.Unet(
