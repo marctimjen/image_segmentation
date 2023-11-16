@@ -109,3 +109,4 @@ if all_data:
         shutil.copy(source_path_img, train_path + "/images")
         shutil.copy(source_path_mask, train_path + "/masks")
 
+
