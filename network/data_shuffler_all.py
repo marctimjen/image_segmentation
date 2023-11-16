@@ -24,7 +24,7 @@ all_data = True
 if args.all == "a":
     print("use all data")
     start_path = f"image_data_all2"
-    data_path = rf"/datasets/tumor_segmentation_mnm_anno_v2"
+    data_path2 = rf"/datasets/tumor_segmentation_mnm_anno_v2"
 elif args.all == "n":
     print("use only repo data")
     all_data = False
@@ -32,7 +32,7 @@ elif args.all == "n":
 else:
     print("use data without our annotations")
     start_path = f"image_data_all"
-    data_path = rf"/datasets/tumor_segmentation_mnm_anno"
+    data_path2 = rf"/datasets/tumor_segmentation_mnm_anno"
 
 if os.path.exists(start_path):
     shutil.rmtree(start_path)
@@ -92,20 +92,20 @@ for file in patient_list:
 # after the split of their data, we can move the rest of the files into training:
 
 if all_data:
-    rest_files = os.listdir(data_path)
+    rest_files = os.listdir(data_path2)
 
     patient_list = [f for f in rest_files if "patient" in f]
     for file in patient_list:
-        source_path_img = data_path + "/" + file
-        source_path_mask = data_path + "/segmentation_" + file[-7:]
+        source_path_img = data_path2 + "/" + file
+        source_path_mask = data_path2 + "/segmentation_" + file[-7:]
         shutil.copy(source_path_img, train_path + "/images")
         shutil.copy(source_path_mask, train_path + "/masks")
 
 
     control_list = [f for f in rest_files if "control" in f]
     for file in control_list:
-        source_path_img = data_path + "/" + file
-        source_path_mask = data_path + "/target_seg_" + file[-7:]
+        source_path_img = data_path2 + "/" + file
+        source_path_mask = data_path2 + "/target_seg_" + file[-7:]
         shutil.copy(source_path_img, train_path + "/images")
         shutil.copy(source_path_mask, train_path + "/masks")
 
