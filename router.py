@@ -23,7 +23,9 @@ ENCODER_NAME = "resnet34"
 # PATH = "network/models_save/CV-202/MODEL-Unetresnet34CV-202_EPOCH_43.pth"
 # PATH = "network/models_save/CV-204/MODEL-Unetresnet34CV-204_EPOCH_57.pth"
 
-PATH = "network/models_save/CV-211/MODEL-Unetresnet34CV-211_EPOCH_68.pth"
+PATH = "network/models_save/CV-209/MODEL-Unetresnet34CV-209_EPOCH_66.pth"
+
+# PATH = "network/models_save/CV-211/MODEL-Unetresnet34CV-211_EPOCH_68.pth"
 
 # Create the model
 model = smp.Unet(
