@@ -95,7 +95,7 @@ def plot_image_and_mask(image, mask):
     plt.show()
 
 
-
+# img_45
 
 for pic in val_pics:
     with open(path_to_pics + "/" + pic, 'rb') as file:
