@@ -29,7 +29,7 @@ elif args.all == "n":
     print("use only repo data")
     all_data = False
     start_path = f"image_data"
-else:
+elif args.all == "w":
     print("use data without our annotations")
     start_path = f"image_data_all"
     data_path2 = rf"/datasets/tumor_segmentation_mnm_anno"
