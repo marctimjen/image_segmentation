@@ -4,17 +4,28 @@
 import os
 import numpy as np
 import shutil
+import argparse
+
+parser = argparse.ArgumentParser(description='data-shuffler')
+parser.add_argument("-t", "--all", required=True, help="what data to shuffle")
+args = parser.parse_args()
 
 data_path = rf"/datasets/tumor_segmentation_pics_from_repo"
 
 split = 0.15  # how many pct. for val.
 
-np.random.seed(42)
+np.random.seed(13)  # 42
 print("Remember to change seed if necessary")
 
 files = os.listdir(data_path)
 
-start_path = f"image_data_all2"
+if args.t = "all":
+    start_path = f"image_data_all2"
+    data_path = rf"/datasets/tumor_segmentation_mnm_anno_v2"
+else:
+    start_path = f"image_data_all"
+    data_path = rf"/datasets/tumor_segmentation_mnm_anno"
+
 if os.path.exists(start_path):
     shutil.rmtree(start_path)
 os.makedirs(start_path)
@@ -72,7 +83,7 @@ for file in patient_list:
 
 # after the split of their data, we can move the rest of the files into training:
 
-data_path = rf"/datasets/tumor_segmentation_mnm_anno_v2"
+
 rest_files = os.listdir(data_path)
 
 patient_list = [f for f in rest_files if "patient" in f]
