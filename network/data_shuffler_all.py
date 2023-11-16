@@ -43,8 +43,8 @@ os.makedirs(val_path)
 control_list = [f for f in files if "control" in f]
 control_val = np.random.choice(control_list, size=int(split * len(control_list)), replace=False)
 
-val_path = "image_data_all/val"
-train_path = "image_data_all/train"
+val_path = f"{start_path}/val"
+train_path = f"{start_path}/train"
 for file in control_list:
     source_path_img = data_path + "/" + file
     source_path_mask = data_path + "/target_seg_" + file[-7:]
