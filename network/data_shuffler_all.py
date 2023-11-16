@@ -14,29 +14,29 @@ print("Remember to change seed if necessary")
 
 files = os.listdir(data_path)
 
-start_path = "image_data_all"
+start_path = f"image_data_all2"
 if os.path.exists(start_path):
     shutil.rmtree(start_path)
 os.makedirs(start_path)
 
 
-train_path = "image_data_all/train"
+train_path = f"{start_path}/train"
 os.makedirs(train_path)
 
-train_path = "image_data_all/train/images"
+train_path = f"{start_path}/train/images"
 os.makedirs(train_path)
 
-train_path = "image_data_all/train/masks"
+train_path = f"{start_path}/train/masks"
 os.makedirs(train_path)
 
 
-val_path = "image_data_all/val"
+val_path = f"{start_path}/val"
 os.makedirs(val_path)
 
-val_path = "image_data_all/val/images"
+val_path = f"{start_path}/val/images"
 os.makedirs(val_path)
 
-val_path = "image_data_all/val/masks"
+val_path = f"{start_path}/val/masks"
 os.makedirs(val_path)
 
 
@@ -72,9 +72,8 @@ for file in patient_list:
 
 # after the split of their data, we can move the rest of the files into training:
 
-data_path = rf"/datasets/tumor_segmentation_mnm_anno"
+data_path = rf"/datasets/tumor_segmentation_mnm_anno_v2"
 rest_files = os.listdir(data_path)
-
 
 patient_list = [f for f in rest_files if "patient" in f]
 for file in patient_list:
