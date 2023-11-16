@@ -24,7 +24,7 @@ all_data = True
 if args.all == "a":
     print("use all data")
     start_path = f"image_data_all2"
-    data_path2 = rf"/datasets/tumor_segmentation_mnm_anno_v2"
+    data_path2 = rf"/tumor_segmentation_mnm_anno_v2/all_anno_data"
 elif args.all == "n":
     print("use only repo data")
     all_data = False
