@@ -12,8 +12,8 @@ trans = transforms.Compose([transforms.ToTensor()])
 
 # Model params
 # ENCODER_NAME = "efficientnet-b3"
-# ENCODER_NAME = "resnet34"
-ENCODER_NAME = "resnet18"
+ENCODER_NAME = "resnet34"
+# ENCODER_NAME = "resnet18"
 
 # PATH = "network/models_save/CV-173/MODEL-Unetresnet34CV-173_EPOCH_76.pth"
 # PATH = "network/models_save/CV-176/MODEL-Unetresnet34CV-176_EPOCH_83.pth"
@@ -31,8 +31,8 @@ ENCODER_NAME = "resnet18"
 # PATH = "network/models_save/CV-212/MODEL-Unetresnet34CV-212_EPOCH_32.pth"
 # PATH = "network/models_save/CV-212/MODEL-Unetresnet34CV-212_EPOCH_66.pth"
 # PATH = "network/models_save/CV-213/MODEL-Unetresnet34CV-213_EPOCH_64.pth"
-PATH = "network/models_save/CV-214/MODEL-Unetresnet18CV-214_EPOCH_69.pth"
-# PATH = "network/models_save/CV-215/MODEL-Unetresnet34CV-215_EPOCH_35.pth"
+# PATH = "network/models_save/CV-214/MODEL-Unetresnet18CV-214_EPOCH_69.pth"
+PATH = "network/models_save/CV-215/MODEL-Unetresnet34CV-215_EPOCH_35.pth"
 
 # Create the model
 model = smp.Unet(
