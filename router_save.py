@@ -39,7 +39,7 @@ def predict(img: np.ndarray) -> np.ndarray:
     save_path = rf"/home/paperspace/save_pics"
     j = len(os.listdir(save_path))
 
-    file_path = save_path + f"img_{j}.pkl"
+    file_path = save_path + "/" + f"img_{j}.pkl"
     with open(file_path, 'wb') as file:
         pickle.dump(img, file)
 
