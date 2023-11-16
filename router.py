@@ -36,8 +36,8 @@ ENCODER_NAME = "resnet34"
 
 
 # PATH = "network/models_save/CV-216/MODEL-Unetresnet34CV-216_EPOCH_38.pth"
-PATH = "network/models_save/CV-216/MODEL-Unetresnet34CV-216_EPOCH_41.pth"
-# PATH = "network/models_save/CV-216/MODEL-Unetresnet34CV-216_EPOCH_71.pth"
+# PATH = "network/models_save/CV-216/MODEL-Unetresnet34CV-216_EPOCH_41.pth"
+PATH = "network/models_save/CV-216/MODEL-Unetresnet34CV-216_EPOCH_71.pth"
 
 
 # Create the model
