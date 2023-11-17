@@ -92,6 +92,7 @@ PATH = "network/models_save/CV-253/MODEL-Unetresnet34CV-253_EPOCH_44.pth"  #
 # PATH = "network/models_save/CV-254/MODEL-Unetresnet34CV-254_EPOCH_28.pth"  # .721
 # PATH = "network/models_save/CV-254/MODEL-Unetresnet34CV-254_EPOCH_61.pth"  #
 
+# PATH = "network/models_save/CV-256/MODEL-Unetresnet34CV-256_EPOCH_97.pth"  #
 
 
 # Create the model
