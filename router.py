@@ -30,8 +30,8 @@ ENCODER_NAME = "resnet34"
 # PATH = "network/models_save/CV-211/MODEL-Unetresnet34CV-211_EPOCH_68.pth"
 
 
-PATH = "network/models_save/CV-212/MODEL-Unetresnet34CV-212_EPOCH_32.pth"  # 0.735,
-# PATH = "network/models_save/CV-212/MODEL-Unetresnet34CV-212_EPOCH_66.pth"  # 0.735, 0.603
+# PATH = "network/models_save/CV-212/MODEL-Unetresnet34CV-212_EPOCH_32.pth"  # 0.735,  0.7209
+PATH = "network/models_save/CV-212/MODEL-Unetresnet34CV-212_EPOCH_66.pth"  # 0.70, 0.603
 # PATH = "network/models_save/CV-213/MODEL-Unetresnet34CV-213_EPOCH_64.pth"
 # PATH = "network/models_save/CV-214/MODEL-Unetresnet18CV-214_EPOCH_69.pth"
 # PATH = "network/models_save/CV-215/MODEL-Unetresnet34CV-215_EPOCH_35.pth"
@@ -94,6 +94,7 @@ PATH = "network/models_save/CV-212/MODEL-Unetresnet34CV-212_EPOCH_32.pth"  # 0.7
 
 # PATH = "network/models_save/CV-256/MODEL-Unetresnet34CV-256_EPOCH_97.pth"  #  0.707
 
+# PATH = "network/models_save/CV-258/MODEL-Unetresnet34CV-258_EPOCH_20.pth"  #
 
 # Create the model
 model = smp.Unet(
