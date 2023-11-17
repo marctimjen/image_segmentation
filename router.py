@@ -78,13 +78,16 @@ ENCODER_NAME = "resnet34"
 # PATH = "network/models_save/CV-246/MODEL-Unetresnet34CV-246_EPOCH_54.pth"  #  0.702
 
 # PATH = "network/models_save/CV-250/MODEL-Unetresnet34CV-250_EPOCH_55.pth"  # 0.589
-PATH = "network/models_save/CV-250/MODEL-Unetresnet34CV-250_EPOCH_99.pth"  #
+# PATH = "network/models_save/CV-250/MODEL-Unetresnet34CV-250_EPOCH_99.pth"  #
 
 # PATH = "network/models_save/CV-251/MODEL-Unetresnet34CV-251_EPOCH_30.pth"  # 0.709
 # PATH = "network/models_save/CV-251/MODEL-Unetresnet34CV-251_EPOCH_51.pth"  # 0.674
 # PATH = "network/models_save/CV-251/MODEL-Unetresnet34CV-251_EPOCH_98.pth"  # 0.687
 
-# PATH = "network/models_save/CV-252/MODEL-Unetresnet34CV-252_EPOCH_34.pth"  #
+PATH = "network/models_save/CV-252/MODEL-Unetresnet34CV-252_EPOCH_34.pth"  #
+
+# PATH = "network/models_save/CV-253/MODEL-Unetresnet34CV-253_EPOCH_17.pth"  #
+# PATH = "network/models_save/CV-253/MODEL-Unetresnet34CV-253_EPOCH_44.pth"  #
 
 # PATH = "network/models_save/CV-254/MODEL-Unetresnet34CV-254_EPOCH_28.pth"  # .721
 
